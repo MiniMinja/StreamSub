@@ -1,2 +1,5 @@
 #All java class files
 *.class
+
+#manifest stuff
+manifest.txt

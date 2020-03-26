@@ -121,8 +121,4 @@ public class Dialogue implements Runnable{
         }
     }
 
-    public static void main(String[] args){
-        Dialogue d = new Dialogue();
-        TextDisplay td = new TextDisplay(d);
-    }
 }
