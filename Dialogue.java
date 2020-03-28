@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class Dialogue implements Runnable{
 
@@ -26,13 +25,14 @@ public class Dialogue implements Runnable{
 
     public Dialogue(){
         //initialize the text style to use
-        font_in_use = new Font(Font.DIALOG, Font.PLAIN, 20);
+        font_in_use = new Font(Font.DIALOG, Font.PLAIN, 40);
         text_color_in_use = new Color(242, 238, 0);
         text = new TextReader();
 
         //create JFrame
         input_window = new JFrame("Text Input");
         input_window.setBackground(Color.black);
+        input_window.setAlwaysOnTop(true);
 
         //create the container that contains everything
         entire_container = new JPanel();
@@ -110,8 +110,8 @@ public class Dialogue implements Runnable{
     public void run(){
         while(job_flag){
             try{
-                if(input_window.getFocusOwner() != text_area) 
-                    text_area.requestFocus();
+                if(input_window.getFocusOwner() != text_area)
+                    text_area.requestFocusInWindow();
                 text_area.repaint();
 
                 Thread.sleep(30);
