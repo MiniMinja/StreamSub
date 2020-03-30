@@ -46,17 +46,6 @@ public class Dialogue implements Runnable{
                 g.setColor(text_color_in_use);
                 g.setFont(font_in_use);
                 text.draw(g, true);
-
-                if(upload_flag){
-                    upload_holder = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_ARGB);
-                    g = upload_holder.createGraphics();
-                    g.setColor(Color.black);
-                    g.fillRect(0, 0, 1280, 720);
-                    g.setColor(text_color_in_use);
-                    g.setFont(font_in_use);
-                    text.draw(g, false);
-                    upload_flag = false;
-                }
             }
         };
         text_area.setPreferredSize(new Dimension(1280, 720));
@@ -75,6 +64,13 @@ public class Dialogue implements Runnable{
             public void mouseExited(MouseEvent e){}
             public void mousePressed(MouseEvent e){
                 upload_flag = true;
+                upload_holder = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_ARGB);
+                Graphics g = upload_holder.createGraphics();
+                g.setColor(Color.black);
+                g.fillRect(0, 0, 1280, 720);
+                g.setColor(text_color_in_use);
+                g.setFont(font_in_use);
+                text.draw(g, false);
             }
             public void mouseReleased(MouseEvent e){}
         });
@@ -106,6 +102,9 @@ public class Dialogue implements Runnable{
     public JFrame window(){
         return input_window;
     }
+
+    public boolean upload_flag(){ return upload_flag;}
+    public void read_upload_flag(){upload_flag = false;}
 
     public void run(){
         while(job_flag){
